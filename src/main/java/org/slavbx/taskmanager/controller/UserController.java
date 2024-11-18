@@ -23,24 +23,24 @@ public class UserController {
 
     @GetMapping("/hello")
     public String hello() {
-        Role roleAdmin = Role.builder().name("ADMIN").build();
-        Role roleUser = Role.builder().name("USER").build();
+        Role roleAdmin = Role.builder().name("ADMIN1").build();
+        Role roleUser = Role.builder().name("USER1").build();
         roleRepository.save(roleAdmin);
         roleRepository.save(roleUser);
 
         Set<Role> roles = new HashSet<>();
         roles.add(roleAdmin);
         roles.add(roleUser);
-        User userAdmin = User.builder().email("admin@admin.com").password("pswadmin").name("administrator")
+        User userAdmin = User.builder().email("admin@admin.com1").password("pswadmin").name("administrator1")
                 .roles(roles).build();
-        User userUser = User.builder().email("user@user.com").password("pswuser").name("username")
+        User userUser = User.builder().email("user@user.com1").password("pswuser").name("username1")
                 .roles(new HashSet<>() {{ add(roleUser);}}).build();
         userRepository.save(userAdmin);
         userRepository.save(userUser);
 
-        Task task1 = Task.builder().title("task1_title").description("task1_desc").author(userAdmin).performer(userUser)
+        Task task1 = Task.builder().title("task1_title1").description("task1_desc").author(userAdmin).performer(userUser)
                 .status(Status.WAIT).priority(Priority.MEDIUM).build();
-        Task task2 = Task.builder().title("task2_title").description("task2_desc").author(userAdmin).performer(userUser)
+        Task task2 = Task.builder().title("task2_title1").description("task2_desc").author(userAdmin).performer(userUser)
                 .status(Status.WAIT).priority(Priority.MEDIUM).build();
         taskRepository.save(task1);
         taskRepository.save(task2);
