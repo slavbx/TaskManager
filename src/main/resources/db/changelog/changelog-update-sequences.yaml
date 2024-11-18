@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3345345
+      author: slavbx
+      changes:
+        - sql:
+            sql: |
+              SELECT setval('comments_id_seq', COALESCE(MAX(id), 2)) FROM comments;
+              SELECT setval('roles_id_seq', COALESCE(MAX(id), 2)) FROM roles;
+              SELECT setval('tasks_id_seq', COALESCE(MAX(id), 2)) FROM tasks;
+              SELECT setval('users_id_seq', COALESCE(MAX(id), 2)) FROM users;

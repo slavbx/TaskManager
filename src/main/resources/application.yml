@@ -12,13 +12,13 @@ spring:
 #    url: jdbc:postgresql://localhost:5433/db_habittracker
 #    user: slav
 #    password: slav
-#    default-schema: habittracker_service
+    default-schema: taskmanager
     change-log: /db/changelog/changelog-master.yaml
-    enabled: false
+    enabled: true
   jpa:
     hibernate:
-#      ddl-auto: none
-      ddl-auto: update
+      ddl-auto: none
+#      ddl-auto: update
     show-sql: true  #Print SQL-query in console
     properties:
       hibernate.default_schema: taskmanager

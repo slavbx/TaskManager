@@ -1,0 +1,284 @@
+databaseChangeLog:
+- changeSet:
+    id: 1731953707686-1
+    author: slavbx
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: tasks_pkey
+            name: id
+            type: BIGINT
+        - column:
+            name: description
+            type: VARCHAR(255)
+        - column:
+            name: priority
+            type: VARCHAR(255)
+        - column:
+            name: status
+            type: VARCHAR(255)
+        - column:
+            name: title
+            type: VARCHAR(255)
+        - column:
+            name: author_id
+            type: BIGINT
+        - column:
+            name: performer_id
+            type: BIGINT
+        tableName: tasks
+- changeSet:
+    id: 1731953707686-2
+    author: slavbx
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: users_pkey
+            name: id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+            name: email
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+            name: password
+            type: VARCHAR(255)
+        tableName: users
+- changeSet:
+    id: 1731953707686-3
+    author: slavbx
+    changes:
+    - addUniqueConstraint:
+        columnNames: name
+        constraintName: users_name_unique
+        tableName: users
+- changeSet:
+    id: 1731953707686-4
+    author: slavbx
+    changes:
+    - addUniqueConstraint:
+        columnNames: email
+        constraintName: users_email_unique
+        tableName: users
+- changeSet:
+    id: 1731953707686-5
+    author: slavbx
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: comments_pkey
+            name: id
+            type: BIGINT
+        - column:
+            name: date_time
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: text
+            type: VARCHAR(255)
+        - column:
+            name: task_id
+            type: BIGINT
+        - column:
+            name: user_id
+            type: BIGINT
+        tableName: comments
+- changeSet:
+    id: 1731953707686-6
+    author: slavbx
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: roles_pkey
+            name: id
+            type: BIGINT
+        - column:
+            name: name
+            type: VARCHAR(255)
+        tableName: roles
+- changeSet:
+    id: 1731953707686-7
+    author: slavbx
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: users_roles_pkey
+            name: user_id
+            type: BIGINT
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: users_roles_pkey
+            name: role_id
+            type: BIGINT
+        tableName: users_roles
+- changeSet:
+    id: 1731953707686-8
+    author: slavbx
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: users_roles
+        constraintName: fk_users_roles_user_id
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: users
+        validate: true
+- changeSet:
+    id: 1731953707686-9
+    author: slavbx
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: comments
+        constraintName: fk_comments_user_id
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: users
+        validate: true
+- changeSet:
+    id: 1731953707686-10
+    author: slavbx
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: author_id
+        baseTableName: tasks
+        constraintName: fk_tasks_author_id
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: users
+        validate: true
+- changeSet:
+    id: 1731953707686-11
+    author: slavbx
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: task_id
+        baseTableName: comments
+        constraintName: fk_comments_task_id
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: tasks
+        validate: true
+- changeSet:
+    id: 1731953707686-12
+    author: slavbx
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: role_id
+        baseTableName: users_roles
+        constraintName: fk_users_roles_role_id
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: roles
+        validate: true
+- changeSet:
+    id: 1731953707686-13
+    author: slavbx
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: performer_id
+        baseTableName: tasks
+        constraintName: fk_tasks_performer_id
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: NO ACTION
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: users
+        validate: true
+- changeSet:
+      id: 1731957776089-5
+      author: Administrator (generated)
+      changes:
+          - createSequence:
+                cacheSize: 1
+                cycle: false
+                dataType: bigint
+                incrementBy: 1
+                maxValue: 9223372036854775807
+                minValue: 1
+                sequenceName: comments_id_seq
+                startValue: 1
+- changeSet:
+      id: 1731957776089-6
+      author: Administrator (generated)
+      changes:
+          - createSequence:
+                cacheSize: 1
+                cycle: false
+                dataType: bigint
+                incrementBy: 1
+                maxValue: 9223372036854775807
+                minValue: 1
+                sequenceName: roles_id_seq
+                startValue: 1
+- changeSet:
+      id: 1731957776089-7
+      author: Administrator (generated)
+      changes:
+          - createSequence:
+                cacheSize: 1
+                cycle: false
+                dataType: bigint
+                incrementBy: 1
+                maxValue: 9223372036854775807
+                minValue: 1
+                sequenceName: tasks_id_seq
+                startValue: 1
+- changeSet:
+      id: 1731957776089-8
+      author: Administrator (generated)
+      changes:
+          - createSequence:
+                cacheSize: 1
+                cycle: false
+                dataType: bigint
+                incrementBy: 1
+                maxValue: 9223372036854775807
+                minValue: 1
+                sequenceName: users_id_seq
+                startValue: 1
