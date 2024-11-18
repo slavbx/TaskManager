@@ -12,15 +12,23 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "comments", schema = "taskmanager")
+@Table(name = "comments")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comments_seq")
-    @SequenceGenerator(name = "comments_seq", sequenceName = "taskmanager.comments_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "comments_seq", sequenceName = "comments_id_seq", allocationSize = 1)
     private Long id;
 
-    @Column(name = "date_time", nullable = false)
-    private LocalDateTime dateTime;
+    @Builder.Default
+    @Column(name = "date_time")
+    private LocalDateTime dateTime = LocalDateTime.now();
+
+    @Column
+    private String text;
+
+    @ManyToOne
+    @JoinColumn(name = "task_id")
+    private Task task;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

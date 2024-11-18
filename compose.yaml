@@ -6,4 +6,4 @@ services:
       - 'POSTGRES_PASSWORD=slav'
       - 'POSTGRES_USER=slav'
     ports:
-      - '5432'
+      - '5433:5432'

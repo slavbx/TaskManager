@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: TaskManager
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_taskmanager?currentSchema=taskmanager
+    username: slav
+    password: slav
+    driver-class-name: org.postgresql.Driver
+#    dbcp2:
+#      default-schema: taskmanager
+  liquibase:
+#    url: jdbc:postgresql://localhost:5433/db_habittracker
+#    user: slav
+#    password: slav
+#    default-schema: habittracker_service
+    change-log: /db/changelog/changelog-master.yaml
+    enabled: false
+  jpa:
+    hibernate:
+#      ddl-auto: none
+      ddl-auto: update
+    show-sql: true  #Print SQL-query in console
+    properties:
+      hibernate.default_schema: taskmanager

@@ -4,6 +4,9 @@ package org.slavbx.taskmanager.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Getter
 @Setter
@@ -12,12 +15,15 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "roles", schema = "taskmanager")
+@Table(name = "roles")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "roles_seq")
-    @SequenceGenerator(name = "roles_seq", sequenceName = "taskmanager.roles_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "roles_seq", sequenceName = "roles_id_seq", allocationSize = 1)
     private Long id;
 
     private String name;
+
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users = new HashSet<>();
 }
