@@ -10,5 +10,15 @@ GET http://localhost:8080/taskmanager/comments/2
 ### Получение комментария по его id (ошибка при id<0)
 GET http://localhost:8080/taskmanager/comments/3
 
+### Создание комментария
+POST http://localhost:8080/taskmanager/comments/create
+Content-Type: application/json
 
+{
+  "text": "I post this comment5 for task3 here",
+  "taskId": 2,
+  "userId": 2
+}
 
+### Удаление комментария
+DELETE http://localhost:8080/taskmanager/comments/delete/6

@@ -33,12 +33,31 @@ public class TaskService {
         User user = userService.getUserById(performerId);
         task.setPerformer(user);
         taskRepository.save(task);
-        return new ResponseDTO(task.getId(), "Task was updated");
+        return new ResponseDTO(task.getId(), "Task got new performer");
     }
 
-    public ResponseDTO createTask(Task task) {
+    public ResponseDTO create(Task task) {
         task.setId(null);
         Task savedTask = taskRepository.save(task);
         return new ResponseDTO(savedTask.getId(), "Task was created");
+    }
+
+    public ResponseDTO delete(Long id) throws NotFoundException {
+        if (!taskRepository.existsById(id)) {
+            throw new NotFoundException("Task not found with id: " + id);
+        }
+        taskRepository.deleteById(id);
+        return new ResponseDTO(id, "Task was deleted");
+    }
+
+    public ResponseDTO update(Long id, Task task) {
+        Task updatedTask = taskRepository.findById(id).orElseThrow(() -> new NotFoundException("Task not found with id: " + id));
+        updatedTask.setDescription(task.getDescription());
+        updatedTask.setPerformer(task.getPerformer());
+        updatedTask.setTitle(task.getTitle());
+        updatedTask.setPriority(task.getPriority());
+        updatedTask.setStatus(task.getStatus());
+        taskRepository.save(updatedTask);
+        return new ResponseDTO(id, "Task was updated");
     }
 }

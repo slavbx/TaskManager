@@ -1,5 +1,6 @@
 package org.slavbx.taskmanager.controller;
 
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
@@ -35,14 +36,22 @@ public class TaskController {
 
     @PostMapping("/create")
     public ResponseEntity<ResponseDTO> createTask(@RequestBody TaskDTO taskDTO) {
-        return ResponseEntity.ok(taskService.createTask(taskMapper.taskDTOToTask(taskDTO)));
+        return ResponseEntity.ok(taskService.create(taskMapper.taskDTOToTask(taskDTO)));
     }
 
     @PostMapping("/{taskId}/setperformer/{performerId}")
-    public ResponseEntity<ResponseDTO> setPerformerToTask(@PathVariable @Min(0) Long taskId,
-                                                  @PathVariable @Min(0) Long performerId) {
-        return ResponseEntity.ok(taskService.setPerformerToTask(taskId, performerId));
+    public ResponseEntity<ResponseDTO> setPerformerToTask(@PathVariable @Min(0) Long id,
+                                                          @PathVariable @Min(0) Long performerId) {
+        return ResponseEntity.ok(taskService.setPerformerToTask(id, performerId));
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ResponseDTO> deleteTask(@PathVariable @Min(0) Long id) {
+        return ResponseEntity.ok(taskService.delete(id));
+    }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ResponseDTO> updateTask(@PathVariable @Min(0) Long id, @RequestBody TaskDTO taskDTO) {
+        return ResponseEntity.ok(taskService.update(id, taskMapper.taskDTOToTask(taskDTO)));
+    }
 }

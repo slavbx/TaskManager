@@ -20,7 +20,10 @@ public interface CommentMapper {
     @Mapping(target = "taskId", source = "task.id")
     List<CommentDTO> commentsToCommentDTOs(List<Comment> comments);
 
-    //Comment commentDTOToComment(commentDTO commentDTO);
+    @Mapping(target = "user.id", source = "userId")
+    @Mapping(target = "task.id", source = "taskId")
+    @Mapping(target = "dateTime", expression = "java(java.time.LocalDateTime.now())")
+    Comment commentDTOToComment(CommentDTO commentDTO);
 
     default Page<CommentDTO> commentsPageToCommentDTOsPage(Page<Comment> commentsPage) {
         List<CommentDTO> commentDTOs = commentsToCommentDTOs(commentsPage.getContent());

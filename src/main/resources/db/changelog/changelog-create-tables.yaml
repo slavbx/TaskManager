@@ -195,8 +195,8 @@ databaseChangeLog:
         constraintName: fk_comments_task_id
         deferrable: false
         initiallyDeferred: false
-        onDelete: NO ACTION
-        onUpdate: NO ACTION
+        onDelete: CASCADE
+        onUpdate: CASCADE
         referencedColumnNames: id
         referencedTableName: tasks
         validate: true

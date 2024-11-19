@@ -25,3 +25,18 @@ Content-Type: application/json
 
 ### Задание исполнителя для задачи
 POST http://localhost:8080/taskmanager/tasks/3/setperformer/2
+
+### Редактирование задачи
+PUT http://localhost:8080/taskmanager/tasks/update/6
+Content-Type: application/json
+
+{
+  "title": "task3_title33",
+  "description": "task3_desc33",
+  "performerId": 1,
+  "priority": "HIGH",
+  "status": "PROGRESS"
+}
+
+### Удаление задачи
+DELETE http://localhost:8080/taskmanager/tasks/delete/5

@@ -1,6 +1,7 @@
 package org.slavbx.taskmanager.exception;
 
 import jakarta.validation.ConstraintViolationException;
+import org.slavbx.taskmanager.dto.ResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -11,24 +12,24 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ExceptionApiHandler {
 
     @ExceptionHandler(NotFoundException.class) //MyCustomException
-    public ResponseEntity<String> notFoundException(NotFoundException exception) {
+    public ResponseEntity<ResponseDTO> notFoundException(NotFoundException exception) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
-                .body("message: " + exception.getMessage());
+                .body(ResponseDTO.builder().message(exception.getMessage()).build());
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<String> notValidException(MethodArgumentNotValidException exception) {
+    public ResponseEntity<ResponseDTO> notValidException(MethodArgumentNotValidException exception) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
-                .body("message: " + exception.getMessage());
+                .body(ResponseDTO.builder().message(exception.getMessage()).build());
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<String> constraintException(ConstraintViolationException exception) {
+    public ResponseEntity<ResponseDTO> constraintException(ConstraintViolationException exception) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
-                .body("message: " + exception.getMessage());
+                .body(ResponseDTO.builder().message(exception.getMessage()).build());
     }
 
 }
