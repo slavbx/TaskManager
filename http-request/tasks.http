@@ -1,0 +1,4 @@
+### Просмотр всех задач постранично
+GET http://localhost:8080/taskmanager/tasks?page=0&size=101
+
+
