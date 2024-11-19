@@ -8,7 +8,7 @@ GET http://localhost:8080/taskmanager/comments?page=0&size=101
 GET http://localhost:8080/taskmanager/comments/2
 
 ### Получение комментария по его id (ошибка при id<0)
-GET http://localhost:8080/taskmanager/comments/-1
+GET http://localhost:8080/taskmanager/comments/3
 
 
 

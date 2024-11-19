@@ -1,19 +1,17 @@
-package org.slavbx.taskmanager.controller;
+package org.slavbx.taskmanager.exception;
 
 import jakarta.validation.ConstraintViolationException;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @RestControllerAdvice
 public class ExceptionApiHandler {
 
-    @ExceptionHandler(ChangeSetPersister.NotFoundException.class)
-    public ResponseEntity<String> notFoundException(ChangeSetPersister.NotFoundException exception) {
+    @ExceptionHandler(NotFoundException.class) //MyCustomException
+    public ResponseEntity<String> notFoundException(NotFoundException exception) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body("message: " + exception.getMessage());

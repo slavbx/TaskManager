@@ -5,10 +5,23 @@ GET http://localhost:8080/taskmanager/tasks?page=0&size=10
 GET http://localhost:8080/taskmanager/tasks?page=0&size=101
 
 ### Получение задачи по её id
-GET http://localhost:8080/taskmanager/tasks/2
+GET http://localhost:8080/taskmanager/tasks/3
 
 ### Получение задачи по её id (ошибка при id<0)
 GET http://localhost:8080/taskmanager/tasks/-1
 
+### Создание задачи
+POST http://localhost:8080/taskmanager/tasks/create
+Content-Type: application/json
 
+{
+  "title": "task3_title",
+  "description": "task3_desc",
+  "authorId": 1,
+  "performerId": 2,
+  "priority": "MEDIUM",
+  "status": "WAIT"
+}
 
+### Задание исполнителя для задачи
+POST http://localhost:8080/taskmanager/tasks/3/setperformer/2

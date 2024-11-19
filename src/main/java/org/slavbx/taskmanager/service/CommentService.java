@@ -1,11 +1,9 @@
 package org.slavbx.taskmanager.service;
 
 import lombok.RequiredArgsConstructor;
+import org.slavbx.taskmanager.exception.NotFoundException;
 import org.slavbx.taskmanager.model.Comment;
-import org.slavbx.taskmanager.model.Task;
 import org.slavbx.taskmanager.repository.CommentRepository;
-import org.slavbx.taskmanager.repository.TaskRepository;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +21,7 @@ public class CommentService {
         return commentRepository.findAll(pageable);
     }
 
-    public Comment getCommentById(Long id) throws ChangeSetPersister.NotFoundException {
-        return commentRepository.findById(id).orElseThrow(() -> new ChangeSetPersister.NotFoundException());
+    public Comment getCommentById(Long id) throws NotFoundException {
+        return commentRepository.findById(id).orElseThrow(() -> new NotFoundException("Comment not found with id: " + id));
     }
 }

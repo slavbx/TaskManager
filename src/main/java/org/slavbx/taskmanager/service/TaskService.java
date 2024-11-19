@@ -1,22 +1,22 @@
 package org.slavbx.taskmanager.service;
 
 import lombok.RequiredArgsConstructor;
+import org.slavbx.taskmanager.dto.ResponseDTO;
+import org.slavbx.taskmanager.exception.NotFoundException;
 import org.slavbx.taskmanager.model.Task;
+import org.slavbx.taskmanager.model.User;
 import org.slavbx.taskmanager.repository.TaskRepository;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class TaskService {
     private final TaskRepository taskRepository;
+    private final UserService userService;
 
     public Page<Task> getAllTasks(int page, int size){
         Sort sort = Sort.by(Sort.Direction.DESC, "priority");
@@ -24,7 +24,21 @@ public class TaskService {
         return taskRepository.findAll(pageable);
     }
 
-    public Task getTaskById(Long id) throws ChangeSetPersister.NotFoundException {
-        return taskRepository.findById(id).orElseThrow(() -> new ChangeSetPersister.NotFoundException());
+    public Task getTaskById(Long id) throws NotFoundException {
+        return taskRepository.findById(id).orElseThrow(() -> new NotFoundException("Task not found with id: " + id));
+    }
+
+    public ResponseDTO setPerformerToTask(Long taskId, Long performerId) throws NotFoundException {
+        Task task = getTaskById(taskId);
+        User user = userService.getUserById(performerId);
+        task.setPerformer(user);
+        taskRepository.save(task);
+        return new ResponseDTO(task.getId(), "Task was updated");
+    }
+
+    public ResponseDTO createTask(Task task) {
+        task.setId(null);
+        Task savedTask = taskRepository.save(task);
+        return new ResponseDTO(savedTask.getId(), "Task was created");
     }
 }

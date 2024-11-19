@@ -27,7 +27,7 @@ public class CommentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CommentDTO> getCommentById(@PathVariable @Min(0) Long id) throws ChangeSetPersister.NotFoundException {
+    public ResponseEntity<CommentDTO> getCommentById(@PathVariable @Min(0) Long id) {
         return ResponseEntity.ok(commentMapper.commentToCommentDTO(commentService.getCommentById(id)));
     }
 

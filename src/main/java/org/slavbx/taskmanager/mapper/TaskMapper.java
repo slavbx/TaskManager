@@ -20,7 +20,9 @@ public interface TaskMapper {
     @Mapping(target = "performerId", source = "performer.id")
     List<TaskDTO> tasksToTaskDTOs(List<Task> tasks);
 
-    //Task taskDTOToTask(TaskDTO taskDTO);
+    @Mapping(target = "author.id", source = "authorId")
+    @Mapping(target = "performer.id", source = "performerId")
+    Task taskDTOToTask(TaskDTO taskDTO);
 
     default Page<TaskDTO> tasksPageToTaskDTOsPage(Page<Task> tasksPage) {
         List<TaskDTO> taskDTOs = tasksToTaskDTOs(tasksPage.getContent());
