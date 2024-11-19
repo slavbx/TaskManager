@@ -1,7 +1,9 @@
 package org.slavbx.taskmanager.service;
 
 import lombok.RequiredArgsConstructor;
+import org.slavbx.taskmanager.model.Comment;
 import org.slavbx.taskmanager.model.Task;
+import org.slavbx.taskmanager.repository.CommentRepository;
 import org.slavbx.taskmanager.repository.TaskRepository;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
@@ -10,21 +12,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
-public class TaskService {
-    private final TaskRepository taskRepository;
+public class CommentService {
+    private final CommentRepository commentRepository;
 
-    public Page<Task> getAllTasks(int page, int size){
-        Sort sort = Sort.by(Sort.Direction.DESC, "priority");
+    public Page<Comment> getAllComments(int page, int size) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "dateTime");
         Pageable pageable = PageRequest.of(page, size, sort);
-        return taskRepository.findAll(pageable);
+        return commentRepository.findAll(pageable);
     }
 
-    public Task getTaskById(Long id) throws ChangeSetPersister.NotFoundException {
-        return taskRepository.findById(id).orElseThrow(() -> new ChangeSetPersister.NotFoundException());
+    public Comment getCommentById(Long id) throws ChangeSetPersister.NotFoundException {
+        return commentRepository.findById(id).orElseThrow(() -> new ChangeSetPersister.NotFoundException());
     }
 }

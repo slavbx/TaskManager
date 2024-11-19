@@ -1,0 +1,14 @@
+### Просмотр всех комментариев постранично
+GET http://localhost:8080/taskmanager/comments?page=0&size=10
+
+### Просмотр всех комментариев постранично (ошибка при size>100)
+GET http://localhost:8080/taskmanager/comments?page=0&size=101
+
+### Получение комментария по его id
+GET http://localhost:8080/taskmanager/comments/2
+
+### Получение комментария по его id (ошибка при id<0)
+GET http://localhost:8080/taskmanager/comments/-1
+
+
+

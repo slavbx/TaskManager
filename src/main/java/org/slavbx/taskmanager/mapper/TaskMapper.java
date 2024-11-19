@@ -20,7 +20,7 @@ public interface TaskMapper {
     @Mapping(target = "performerId", source = "performer.id")
     List<TaskDTO> tasksToTaskDTOs(List<Task> tasks);
 
-    //Habit habitDTOToHabit(HabitDTO habitDTO);
+    //Task taskDTOToTask(TaskDTO taskDTO);
 
     default Page<TaskDTO> tasksPageToTaskDTOsPage(Page<Task> tasksPage) {
         List<TaskDTO> taskDTOs = tasksToTaskDTOs(tasksPage.getContent());
