@@ -9,7 +9,9 @@ import org.slavbx.taskmanager.repository.TaskRepository;
 import org.slavbx.taskmanager.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -32,13 +34,13 @@ public class UserController {
         roleRepository.save(roleAdmin);
         roleRepository.save(roleUser);
 
-        Set<Role> roles = new HashSet<>();
+        List<Role> roles = new ArrayList<>();
         roles.add(roleAdmin);
         roles.add(roleUser);
         User userAdmin = User.builder().email("admin@admin.com1").password("pswadmin").username("administrator1")
                 .roles(roles).build();
         User userUser = User.builder().email("user@user.com1").password("pswuser").username("username1")
-                .roles(new HashSet<>() {{ add(roleUser);}}).build();
+                .roles(new ArrayList<>() {{ add(roleUser);}}).build();
         userRepository.save(userAdmin);
         userRepository.save(userUser);
 

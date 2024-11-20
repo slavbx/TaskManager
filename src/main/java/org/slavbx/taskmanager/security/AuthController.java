@@ -17,13 +17,13 @@ public class AuthController {
     private final AuthenticationService authenticationService;
 
     @Operation(summary = "Регистрация пользователя")
-    @PostMapping("/sign-up")
+    @PostMapping("/signup")
     public JwtAuthenticationResponseDTO signUp(@RequestBody @Valid SignUpRequestDTO request) {
         return authenticationService.signUp(request);
     }
 
     @Operation(summary = "Авторизация пользователя")
-    @PostMapping("/sign-in")
+    @PostMapping("/signin")
     public JwtAuthenticationResponseDTO signIn(@RequestBody @Valid SignInRequestDTO request) {
         return authenticationService.signIn(request);
     }

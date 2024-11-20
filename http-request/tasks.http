@@ -1,17 +1,22 @@
 ### Просмотр всех задач постранично
 GET http://localhost:8080/taskmanager/tasks?page=0&size=10
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjozLCJlbWFpbCI6InNsYXZAbWFpbC5jb20iLCJzdWIiOiJzbGF2IiwiaWF0IjoxNzMyMTMyMTE5LCJleHAiOjE3MzIyNzYxMTl9.thf6OGG3PBKLr_kPr-a1OLEfydVMlrNqeMTGBarjMCQ
 
 ### Просмотр всех задач постранично (ошибка при size>100)
 GET http://localhost:8080/taskmanager/tasks?page=0&size=101
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjozLCJlbWFpbCI6InNsYXZAbWFpbC5jb20iLCJzdWIiOiJzbGF2IiwiaWF0IjoxNzMyMTMyMTE5LCJleHAiOjE3MzIyNzYxMTl9.thf6OGG3PBKLr_kPr-a1OLEfydVMlrNqeMTGBarjMCQ
 
 ### Получение задачи по её id
 GET http://localhost:8080/taskmanager/tasks/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjozLCJlbWFpbCI6InNsYXZAbWFpbC5jb20iLCJzdWIiOiJzbGF2IiwiaWF0IjoxNzMyMTMyMTE5LCJleHAiOjE3MzIyNzYxMTl9.thf6OGG3PBKLr_kPr-a1OLEfydVMlrNqeMTGBarjMCQ
 
 ### Получение задачи по её id (ошибка при id<0)
 GET http://localhost:8080/taskmanager/tasks/-1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjozLCJlbWFpbCI6InNsYXZAbWFpbC5jb20iLCJzdWIiOiJzbGF2IiwiaWF0IjoxNzMyMTMyMTE5LCJleHAiOjE3MzIyNzYxMTl9.thf6OGG3PBKLr_kPr-a1OLEfydVMlrNqeMTGBarjMCQ
 
 ### Создание задачи
 POST http://localhost:8080/taskmanager/tasks/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjozLCJlbWFpbCI6InNsYXZAbWFpbC5jb20iLCJzdWIiOiJzbGF2IiwiaWF0IjoxNzMyMTMyMTE5LCJleHAiOjE3MzIyNzYxMTl9.thf6OGG3PBKLr_kPr-a1OLEfydVMlrNqeMTGBarjMCQ
 Content-Type: application/json
 
 {
@@ -25,9 +30,11 @@ Content-Type: application/json
 
 ### Задание исполнителя для задачи
 POST http://localhost:8080/taskmanager/tasks/3/setperformer/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjozLCJlbWFpbCI6InNsYXZAbWFpbC5jb20iLCJzdWIiOiJzbGF2IiwiaWF0IjoxNzMyMTMyMTE5LCJleHAiOjE3MzIyNzYxMTl9.thf6OGG3PBKLr_kPr-a1OLEfydVMlrNqeMTGBarjMCQ
 
 ### Редактирование задачи
 PUT http://localhost:8080/taskmanager/tasks/update/6
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjozLCJlbWFpbCI6InNsYXZAbWFpbC5jb20iLCJzdWIiOiJzbGF2IiwiaWF0IjoxNzMyMTMyMTE5LCJleHAiOjE3MzIyNzYxMTl9.thf6OGG3PBKLr_kPr-a1OLEfydVMlrNqeMTGBarjMCQ
 Content-Type: application/json
 
 {
@@ -40,3 +47,4 @@ Content-Type: application/json
 
 ### Удаление задачи
 DELETE http://localhost:8080/taskmanager/tasks/delete/5
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjozLCJlbWFpbCI6InNsYXZAbWFpbC5jb20iLCJzdWIiOiJzbGF2IiwiaWF0IjoxNzMyMTMyMTE5LCJleHAiOjE3MzIyNzYxMTl9.thf6OGG3PBKLr_kPr-a1OLEfydVMlrNqeMTGBarjMCQ
