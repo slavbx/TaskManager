@@ -18,6 +18,13 @@ public class ExceptionApiHandler {
                 .body(ResponseDTO.builder().message(exception.getMessage()).build());
     }
 
+    @ExceptionHandler(AlreadyExistsException.class) //MyCustomException
+    public ResponseEntity<ResponseDTO> alreadyExistsException(AlreadyExistsException exception) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(ResponseDTO.builder().message(exception.getMessage()).build());
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ResponseDTO> notValidException(MethodArgumentNotValidException exception) {
         return ResponseEntity

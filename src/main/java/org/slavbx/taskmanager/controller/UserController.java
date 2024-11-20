@@ -35,9 +35,9 @@ public class UserController {
         Set<Role> roles = new HashSet<>();
         roles.add(roleAdmin);
         roles.add(roleUser);
-        User userAdmin = User.builder().email("admin@admin.com1").password("pswadmin").name("administrator1")
+        User userAdmin = User.builder().email("admin@admin.com1").password("pswadmin").username("administrator1")
                 .roles(roles).build();
-        User userUser = User.builder().email("user@user.com1").password("pswuser").name("username1")
+        User userUser = User.builder().email("user@user.com1").password("pswuser").username("username1")
                 .roles(new HashSet<>() {{ add(roleUser);}}).build();
         userRepository.save(userAdmin);
         userRepository.save(userUser);

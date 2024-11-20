@@ -9,12 +9,7 @@ spring:
     username: slav
     password: slav
     driver-class-name: org.postgresql.Driver
-#    dbcp2:
-#      default-schema: taskmanager
   liquibase:
-#    url: jdbc:postgresql://localhost:5433/db_habittracker
-#    user: slav
-#    password: slav
     default-schema: taskmanager
     change-log: /db/changelog/changelog-master.yaml
     enabled: true
@@ -25,3 +20,6 @@ spring:
     show-sql: true  #Print SQL-query in console
     properties:
       hibernate.default_schema: taskmanager
+jwt:
+  secret: 984hg493gh0439rthr0429uruj2309yh937gc763fe87t3f89723gf
+  lifetime: 10m
