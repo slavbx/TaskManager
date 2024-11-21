@@ -56,18 +56,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST
 
 ### Смена приоритета
 PATCH http://localhost:8080/taskmanager/tasks/3/priority
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIn1dLCJpZCI6MSwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE3MzIxNzA2MjAsImV4cCI6MTczMjMxNDYyMH0.Xl9te4Y6lpQ6fJvcLdG_xgVjpNT457oEkbAkinxDJw4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIn1dLCJpZCI6MSwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE3MzIxNzg4MDUsImV4cCI6MTczMjMyMjgwNX0.pMJu3F_i0o4j5GzjfQGXh-76rxAVWOHIeW_lA6pud-w
 Content-Type: application/json
 
 {
-  "priority": "HIG"
+  "priority": "MEDIUM"
 }
 
 ### Смена статуса
 PATCH http://localhost:8080/taskmanager/tasks/3/status
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIn1dLCJpZCI6MSwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE3MzIxNzA2MjAsImV4cCI6MTczMjMxNDYyMH0.Xl9te4Y6lpQ6fJvcLdG_xgVjpNT457oEkbAkinxDJw4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjoyLCJlbWFpbCI6InVzZXJAdXNlci5jb20iLCJzdWIiOiJ1c2VyQHVzZXIuY29tIiwiaWF0IjoxNzMyMTgwOTYyLCJleHAiOjE3MzIzMjQ5NjJ9.bGQTPDbb9qtEj89IMO9Qsns7gJxo5ji0rjtRqiJUTDQ
 Content-Type: application/json
 
 {
-  "priority": "HIGH"
+  "status": "WAIT"
 }

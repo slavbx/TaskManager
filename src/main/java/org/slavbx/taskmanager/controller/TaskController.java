@@ -2,11 +2,13 @@ package org.slavbx.taskmanager.controller;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.slavbx.taskmanager.dto.PriorityDTO;
 import org.slavbx.taskmanager.dto.ResponseDTO;
+import org.slavbx.taskmanager.dto.StatusDTO;
 import org.slavbx.taskmanager.dto.TaskDTO;
 import org.slavbx.taskmanager.mapper.TaskMapper;
 import org.slavbx.taskmanager.service.TaskService;
@@ -63,11 +65,11 @@ public class TaskController {
         return ResponseEntity.ok(taskService.setTaskPriority(id, priorityDTO.getPriority()));
     }
 
-
-
-
-
-
+    @PreAuthorize("hasRole('ROLE_ADMIN') or @taskSecurity.hasPerformer(#id)")
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<ResponseDTO> setTaskStatus(@PathVariable @Min(0) Long id, @RequestBody StatusDTO statusDTO) {
+        return ResponseEntity.ok(taskService.setTaskStatus(id, statusDTO.getStatus()));
+    }
 
 //    @PostMapping("/{taskId}/setperformer/{performerId}")
 //    public ResponseEntity<ResponseDTO> setPerformerToTask(@PathVariable @Min(0) Long taskId,

@@ -5,13 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.slavbx.taskmanager.annotation.ValidEnum;
-import org.slavbx.taskmanager.model.Priority;
+import org.slavbx.taskmanager.model.Status;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PriorityDTO {
-    //@ValidEnum(enumClass = Priority.class)
-    private Priority priority;
+public class StatusDTO {
+    //@ValidEnum(enumClass = Status.class)
+    private Status status;
 }
