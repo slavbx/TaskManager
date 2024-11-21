@@ -7,6 +7,7 @@ import org.slavbx.taskmanager.repository.CommentRepository;
 import org.slavbx.taskmanager.repository.RoleRepository;
 import org.slavbx.taskmanager.repository.TaskRepository;
 import org.slavbx.taskmanager.repository.UserRepository;
+import org.slavbx.taskmanager.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -22,7 +23,12 @@ public class UserController {
     private final RoleRepository roleRepository;
     private final TaskRepository taskRepository;
     private final CommentRepository commentRepository;
+    private final UserService userService;
 
+    @GetMapping("/info")
+    public String info() {
+        return userService.getCurrentUser().getEmail();
+    }
 
 
 
@@ -37,9 +43,9 @@ public class UserController {
         List<Role> roles = new ArrayList<>();
         roles.add(roleAdmin);
         roles.add(roleUser);
-        User userAdmin = User.builder().email("admin@admin.com1").password("pswadmin").username("administrator1")
+        User userAdmin = User.builder().email("admin@admin.com1").password("pswadmin").name("administrator1")
                 .roles(roles).build();
-        User userUser = User.builder().email("user@user.com1").password("pswuser").username("username1")
+        User userUser = User.builder().email("user@user.com1").password("pswuser").name("username1")
                 .roles(new ArrayList<>() {{ add(roleUser);}}).build();
         userRepository.save(userAdmin);
         userRepository.save(userUser);

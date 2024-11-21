@@ -33,7 +33,7 @@ public class User implements UserDetails {
     private String password;
 
     @Column(name = "name", unique = true, nullable = false)
-    private String username;
+    private String name;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -69,5 +69,13 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getUsername() {
+        return email;
+    }
+
+    public void setUsername(String email) {
+        this.email = email;
     }
 }

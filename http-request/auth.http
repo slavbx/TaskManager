@@ -3,8 +3,8 @@ POST http://localhost:8080/taskmanager/auth/signin
 Content-Type: application/json
 
 {
-  "username": "slav",
-  "password": "100"
+  "email": "slav4@mail.com",
+  "password": "101"
 }
 
 ### Регистрация
@@ -12,7 +12,7 @@ POST http://localhost:8080/taskmanager/auth/signup
 Content-Type: application/json
 
 {
-  "username": "slav4",
   "email": "slav4@mail.com",
+  "name": "slav4",
   "password": "101"
 }

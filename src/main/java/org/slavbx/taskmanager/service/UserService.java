@@ -18,8 +18,8 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found with id: " + id));
     }
 
-    public User getUserByUsername(String username) throws NotFoundException {
-        return userRepository.findByUsername(username).orElseThrow(() -> new NotFoundException("User not found with username: " + username));
+    public User getUserByEmail(String email) throws NotFoundException {
+        return userRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found with email: " + email));
     }
 
     public User save(User user) {
@@ -27,8 +27,8 @@ public class UserService {
     }
 
     public User create(User user) {
-        if (userRepository.existsByUsername(user.getUsername())) {
-            throw new AlreadyExistsException("User with username: " + user.getUsername() + " already exists");
+        if (userRepository.existsByName(user.getName())) {
+            throw new AlreadyExistsException("User with name: " + user.getName() + " already exists");
         }
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new AlreadyExistsException("User with email: " + user.getEmail() + " already exists");
@@ -37,12 +37,12 @@ public class UserService {
     }
 
     public UserDetailsService userDetailsService() {
-        return this::getUserByUsername;
+        return this::getUserByEmail;
     }
 
     public User getCurrentUser() {
-        var username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return getUserByUsername(username);
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return getUserByEmail(email);
     }
 
 //    @Deprecated
