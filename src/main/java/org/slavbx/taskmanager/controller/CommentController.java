@@ -11,6 +11,7 @@ import org.slavbx.taskmanager.service.CommentService;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,11 +34,13 @@ public class CommentController {
         return ResponseEntity.ok(commentMapper.commentToCommentDTO(commentService.getCommentById(id)));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN') or @taskSecurity.hasPerformer(#id)")
     @PostMapping("/create")
     public ResponseEntity<ResponseDTO> createComment(@RequestBody CommentDTO commentDTO) {
         return ResponseEntity.ok(commentService.createComment(commentMapper.commentDTOToComment(commentDTO)));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ResponseDTO> delete(@PathVariable Long id) {
         return ResponseEntity.ok(commentService.delete(id));

@@ -71,11 +71,12 @@ public class TaskController {
         return ResponseEntity.ok(taskService.setTaskStatus(id, statusDTO.getStatus()));
     }
 
-//    @PostMapping("/{taskId}/setperformer/{performerId}")
-//    public ResponseEntity<ResponseDTO> setPerformerToTask(@PathVariable @Min(0) Long taskId,
-//                                                          @PathVariable @Min(0) Long performerId) {
-//        return ResponseEntity.ok(taskService.setPerformerToTask(taskId, performerId));
-//    }
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PostMapping("/{taskId}/setperformer/{performerId}")
+    public ResponseEntity<ResponseDTO> setPerformerToTask(@PathVariable @Min(0) Long taskId,
+                                                          @PathVariable @Min(0) Long performerId) {
+        return ResponseEntity.ok(taskService.setPerformerToTask(taskId, performerId));
+    }
 
 
 

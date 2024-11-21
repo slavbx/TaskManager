@@ -12,10 +12,11 @@ GET http://localhost:8080/taskmanager/comments/3
 
 ### Создание комментария
 POST http://localhost:8080/taskmanager/comments/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIn1dLCJpZCI6MSwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE3MzIxODIzMDQsImV4cCI6MTczMjMyNjMwNH0.ChY8pU0L3ibTw0wcqL5dlz7lEJuSahjXN9MkwlEpZU0
 Content-Type: application/json
 
 {
-  "text": "I post this comment5 for task3 here",
+  "text": "I post this comment6 for task3 here",
   "taskId": 2,
   "userId": 2
 }
