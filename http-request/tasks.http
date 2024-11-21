@@ -16,7 +16,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST
 
 ### Создание задачи
 POST http://localhost:8080/taskmanager/tasks/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjozLCJlbWFpbCI6InNsYXZAbWFpbC5jb20iLCJzdWIiOiJzbGF2IiwiaWF0IjoxNzMyMTMyMTE5LCJleHAiOjE3MzIyNzYxMTl9.thf6OGG3PBKLr_kPr-a1OLEfydVMlrNqeMTGBarjMCQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIn1dLCJpZCI6MSwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE3MzIxNzA2MjAsImV4cCI6MTczMjMxNDYyMH0.Xl9te4Y6lpQ6fJvcLdG_xgVjpNT457oEkbAkinxDJw4
 Content-Type: application/json
 
 {
@@ -53,3 +53,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST
 ### Текущий пользователь
 GET http://localhost:8080/taskmanager/users/info
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjo2LCJlbWFpbCI6InNsYXY0QG1haWwuY29tIiwic3ViIjoic2xhdjRAbWFpbC5jb20iLCJpYXQiOjE3MzIxNjg2MzYsImV4cCI6MTczMjMxMjYzNn0.omlVT8qdSrijf5XLQ0a7Mlu9RwItBLVJyo7fUx9hGs8
+
+### Смена приоритета
+PATCH http://localhost:8080/taskmanager/tasks/3/priority
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIn1dLCJpZCI6MSwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE3MzIxNzA2MjAsImV4cCI6MTczMjMxNDYyMH0.Xl9te4Y6lpQ6fJvcLdG_xgVjpNT457oEkbAkinxDJw4
+Content-Type: application/json
+
+{
+  "priority": "HIG"
+}
+
+### Смена статуса
+PATCH http://localhost:8080/taskmanager/tasks/3/status
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjEsIm5hbWUiOiJST0xFX0FETUlOIn1dLCJpZCI6MSwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE3MzIxNzA2MjAsImV4cCI6MTczMjMxNDYyMH0.Xl9te4Y6lpQ6fJvcLdG_xgVjpNT457oEkbAkinxDJw4
+Content-Type: application/json
+
+{
+  "priority": "HIGH"
+}

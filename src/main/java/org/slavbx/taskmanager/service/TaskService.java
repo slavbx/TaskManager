@@ -3,6 +3,7 @@ package org.slavbx.taskmanager.service;
 import lombok.RequiredArgsConstructor;
 import org.slavbx.taskmanager.dto.ResponseDTO;
 import org.slavbx.taskmanager.exception.NotFoundException;
+import org.slavbx.taskmanager.model.Priority;
 import org.slavbx.taskmanager.model.Task;
 import org.slavbx.taskmanager.model.User;
 import org.slavbx.taskmanager.repository.TaskRepository;
@@ -59,5 +60,12 @@ public class TaskService {
         updatedTask.setStatus(task.getStatus());
         taskRepository.save(updatedTask);
         return new ResponseDTO(id, "Task was updated");
+    }
+
+    public ResponseDTO setTaskPriority(Long id, Priority priority) throws NotFoundException {
+        Task updatedTask = taskRepository.findById(id).orElseThrow(() -> new NotFoundException("Task not found with id: " + id));
+        updatedTask.setPriority(priority);
+        taskRepository.save(updatedTask);
+        return new ResponseDTO(id, "Priority was updated");
     }
 }
