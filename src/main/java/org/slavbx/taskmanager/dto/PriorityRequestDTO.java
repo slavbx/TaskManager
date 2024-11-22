@@ -5,7 +5,7 @@ import lombok.Builder;
 import org.slavbx.taskmanager.model.Priority;
 
 @Builder
-@Schema(description = "Входной DTO для приоритета задачи")
+@Schema(description = "DTO для получения приоритета задачи")
 public record PriorityRequestDTO (
         //@ValidEnum(enumClass = Priority.class)
         Priority priority

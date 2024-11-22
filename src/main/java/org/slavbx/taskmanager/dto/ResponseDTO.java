@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import org.slavbx.taskmanager.model.Status;
 
 @Builder
-@Schema(description = "Выходной DTO для ответа на запрос")
+@Schema(description = "DTO для ответа на запрос")
 public record ResponseDTO (
     @JsonInclude(JsonInclude.Include.NON_NULL)
     Long entityId,

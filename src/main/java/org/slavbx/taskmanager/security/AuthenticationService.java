@@ -1,7 +1,8 @@
 package org.slavbx.taskmanager.security;
 
 import lombok.RequiredArgsConstructor;
-import org.slavbx.taskmanager.model.Role;
+import org.slavbx.taskmanager.dto.SignInRequestDTO;
+import org.slavbx.taskmanager.dto.SignUpRequestDTO;
 import org.slavbx.taskmanager.model.User;
 import org.slavbx.taskmanager.service.RoleService;
 import org.slavbx.taskmanager.service.UserService;
@@ -24,9 +25,9 @@ public class AuthenticationService {
 
     public JwtAuthenticationResponseDTO signUp(SignUpRequestDTO request) {
         User user = User.builder()
-                .name(request.getName())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
+                .name(request.name())
+                .email(request.email())
+                .password(passwordEncoder.encode(request.password()))
                 .roles(List.of(roleService.getUserRole()))
                 .build();
         userService.create(user);
@@ -36,12 +37,12 @@ public class AuthenticationService {
 
     public JwtAuthenticationResponseDTO signIn(SignInRequestDTO request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-                request.getEmail(),
-                request.getPassword()
+                request.email(),
+                request.password()
         ));
         UserDetails user = userService
                 .userDetailsService()
-                .loadUserByUsername(request.getEmail());
+                .loadUserByUsername(request.email());
         String jwt = jwtService.generateToken(user);
         return new JwtAuthenticationResponseDTO(jwt);
     }

@@ -1,9 +1,13 @@
-package org.slavbx.taskmanager.security;
+package org.slavbx.taskmanager.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.slavbx.taskmanager.security.AuthenticationService;
+import org.slavbx.taskmanager.security.JwtAuthenticationResponseDTO;
+import org.slavbx.taskmanager.dto.SignInRequestDTO;
+import org.slavbx.taskmanager.dto.SignUpRequestDTO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

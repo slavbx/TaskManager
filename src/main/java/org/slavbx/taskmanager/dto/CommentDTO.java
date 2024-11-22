@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Builder
-@Schema(description = "Выходной DTO для комментариев")
+@Schema(description = "DTO для отправки комментариев")
 public record CommentDTO (
     Long id,
     LocalDateTime dateTime,

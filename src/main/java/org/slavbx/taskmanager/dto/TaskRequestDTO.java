@@ -8,7 +8,7 @@ import org.slavbx.taskmanager.model.Priority;
 import org.slavbx.taskmanager.model.Status;
 
 @Builder
-@Schema(description = "Входной DTO для задач")
+@Schema(description = "DTO для получения задач")
 public record TaskRequestDTO(
     String title,
     String description,

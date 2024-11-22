@@ -21,6 +21,9 @@ public interface TaskMapper {
     @Mapping(target = "performerId", source = "performer.id")
     List<TaskDTO> tasksToTaskDTOs(List<Task> tasks);
 
+    @Mapping(target = "id", expression = "java(null)")
+    @Mapping(target = "author", expression = "java(null)")
+    @Mapping(target = "comments", expression = "java(null)")
     @Mapping(target = "performer.id", source = "performerId")
     Task taskRequestDTOToTask(TaskRequestDTO taskRequestDTO);
 

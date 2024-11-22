@@ -21,6 +21,8 @@ public interface CommentMapper {
     @Mapping(target = "taskId", source = "task.id")
     List<CommentDTO> commentsToCommentDTOs(List<Comment> comments);
 
+    @Mapping(target = "id", expression = "java(null)")
+    @Mapping(target = "author", expression = "java(null)")
     @Mapping(target = "task.id", source = "taskId")
     @Mapping(target = "dateTime", expression = "java(java.time.LocalDateTime.now())")
     Comment commentRequestDTOToComment(CommentRequestDTO commentRequestDTO);

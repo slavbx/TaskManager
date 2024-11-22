@@ -5,7 +5,7 @@ import lombok.Builder;
 import org.slavbx.taskmanager.model.Status;
 
 @Builder
-@Schema(description = "Входной DTO для статуса задачи")
+@Schema(description = "DTO для получения статуса задачи")
 public record StatusRequestDTO (
         //@ValidEnum(enumClass = Status.class)
         Status status

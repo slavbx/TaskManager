@@ -6,8 +6,9 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 
 @Builder
-@Schema(description = "Входной DTO для комментариев")
+@Schema(description = "DTO для получения комментариев")
 public record CommentRequestDTO(
+        @NotEmpty
         String text,
         @Positive
         @NotEmpty

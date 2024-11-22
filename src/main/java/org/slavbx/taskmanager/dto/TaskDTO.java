@@ -11,7 +11,7 @@ import org.slavbx.taskmanager.model.Status;
 import java.time.LocalDateTime;
 
 @Builder
-@Schema(description = "Выходной DTO для задач")
+@Schema(description = "DTO для отправки задач")
 public record TaskDTO (
     Long id,
     String title,
