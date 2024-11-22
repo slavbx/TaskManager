@@ -53,7 +53,7 @@ public class TaskController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<ResponseDTO> deleteTask(@PathVariable @Min(0) Long id) {
         return ResponseEntity.ok(taskService.delete(id));
     }
