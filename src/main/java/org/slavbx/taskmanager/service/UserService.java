@@ -44,11 +44,4 @@ public class UserService {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         return getUserByEmail(email);
     }
-
-//    @Deprecated
-//    public void getAdmin() {
-//        var user = getCurrentUser();
-//        user.setRole(Role.ROLE_ADMIN);
-//        save(user);
-//    }
 }

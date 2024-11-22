@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CommentService {
     private final CommentRepository commentRepository;
+    private final UserService userService;
 
     public Page<Comment> getCommentsWithPagingAndFiltering(Specification<Comment> spec, int pageNumber, int pageSize) {
         //Sort sort = Sort.by(Sort.Direction.DESC, "dateTime");
@@ -29,6 +30,7 @@ public class CommentService {
 
     public ResponseDTO createComment(Comment comment) {
         comment.setId(null);
+        comment.setAuthor(userService.getCurrentUser());
         Comment savedComment = commentRepository.save(comment);
         return new ResponseDTO(savedComment.getId(), "Comment was created");
     }

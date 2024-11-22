@@ -5,14 +5,10 @@ import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.slavbx.taskmanager.dto.CommentDTO;
 import org.slavbx.taskmanager.dto.ResponseDTO;
-import org.slavbx.taskmanager.dto.TaskDTO;
 import org.slavbx.taskmanager.mapper.CommentMapper;
 import org.slavbx.taskmanager.model.Comment;
-import org.slavbx.taskmanager.model.Task;
 import org.slavbx.taskmanager.repository.specification.CommentSpecifications;
-import org.slavbx.taskmanager.repository.specification.TaskSpecifications;
 import org.slavbx.taskmanager.service.CommentService;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
@@ -37,11 +33,11 @@ public class CommentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CommentDTO> getCommentById(@PathVariable @Min(0) Long id) {
+    public ResponseEntity<CommentDTO> getCommentById(@PathVariable Long id) {
         return ResponseEntity.ok(commentMapper.commentToCommentDTO(commentService.getCommentById(id)));
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN') or @taskSecurity.hasPerformer(#id)")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or @taskSecurity.hasPerformer(#commentDTO.taskId)")
     @PostMapping("/create")
     public ResponseEntity<ResponseDTO> createComment(@RequestBody CommentDTO commentDTO) {
         return ResponseEntity.ok(commentService.createComment(commentMapper.commentDTOToComment(commentDTO)));
