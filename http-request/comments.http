@@ -1,5 +1,6 @@
 ### Просмотр всех комментариев постранично
-GET http://localhost:8080/taskmanager/comments?page=0&size=10
+GET http://localhost:8080/taskmanager/comments?page=0&size=10&authorId=3
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjoyLCJlbWFpbCI6InVzZXIxQHVzZXIuY29tIiwic3ViIjoidXNlcjFAdXNlci5jb20iLCJpYXQiOjE3MzIyNjg2NjAsImV4cCI6MTczMjQxMjY2MH0._7dwsEDWOM-zpA_vmAya8UTGYoMc-Hy-oi8sxEuc4IM
 
 ### Просмотр всех комментариев постранично (ошибка при size>100)
 GET http://localhost:8080/taskmanager/comments?page=0&size=101
@@ -18,7 +19,7 @@ Content-Type: application/json
 {
   "text": "I post this comment6 for task3 here",
   "taskId": 2,
-  "userId": 2
+  "authorId": 2
 }
 
 ### Удаление комментария

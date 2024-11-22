@@ -1,3 +1,5 @@
 "id","description","priority","status","title","author_id","performer_id"
-"1","task1_desc","MEDIUM","WAIT","task1_title","1","2"
-"2","task2_desc","MEDIUM","WAIT","task2_title","1","2"
+"1","task1_desc","HIGH","WAIT","task1_title","1","2"
+"2","task2_desc","MEDIUM","PROGRESS","task2_title","1","2"
+"3","task3_desc","LOW","COMPLETE","task3_title","1","3"
+"4","task4_desc","MEDIUM","WAIT","task4_title","1","3"

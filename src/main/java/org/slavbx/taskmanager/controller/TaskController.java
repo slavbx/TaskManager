@@ -11,8 +11,11 @@ import org.slavbx.taskmanager.dto.ResponseDTO;
 import org.slavbx.taskmanager.dto.StatusDTO;
 import org.slavbx.taskmanager.dto.TaskDTO;
 import org.slavbx.taskmanager.mapper.TaskMapper;
+import org.slavbx.taskmanager.model.Task;
+import org.slavbx.taskmanager.repository.specification.TaskSpecifications;
 import org.slavbx.taskmanager.service.TaskService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,9 +34,12 @@ public class TaskController {
     private final TaskMapper taskMapper;
 
     @GetMapping
-    public ResponseEntity<Page<TaskDTO>> getTasksPage(@RequestParam(defaultValue = "0") @Min(0) int page,
-                                                      @RequestParam(defaultValue = "10") @Min(0) @Max(100) int size) {
-        return ResponseEntity.ok(taskMapper.tasksPageToTaskDTOsPage(taskService.getAllTasks(page, size)));
+    public ResponseEntity<Page<TaskDTO>> getTasksPage(@RequestParam(defaultValue = "0") @Min(0) int pageNumber,
+                                                      @RequestParam(defaultValue = "10") @Min(0) @Max(100) int pageSize,
+                                                      Long authorId, Long performerId) {
+        Specification<Task> spec = Specification.where(TaskSpecifications.hasAuthor(authorId)
+                .and(TaskSpecifications.hasPerformer(performerId)));
+        return ResponseEntity.ok(taskMapper.tasksPageToTaskDTOsPage(taskService.getTasksWithPagingAndFiltering(spec, pageNumber, pageSize)));
     }
 
     @GetMapping("/{id}")

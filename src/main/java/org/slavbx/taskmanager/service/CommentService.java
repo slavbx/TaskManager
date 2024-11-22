@@ -4,12 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.slavbx.taskmanager.dto.ResponseDTO;
 import org.slavbx.taskmanager.exception.NotFoundException;
 import org.slavbx.taskmanager.model.Comment;
-import org.slavbx.taskmanager.model.Task;
 import org.slavbx.taskmanager.repository.CommentRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,10 +17,10 @@ import org.springframework.stereotype.Service;
 public class CommentService {
     private final CommentRepository commentRepository;
 
-    public Page<Comment> getAllComments(int page, int size) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "dateTime");
-        Pageable pageable = PageRequest.of(page, size, sort);
-        return commentRepository.findAll(pageable);
+    public Page<Comment> getCommentsWithPagingAndFiltering(Specification<Comment> spec, int pageNumber, int pageSize) {
+        //Sort sort = Sort.by(Sort.Direction.DESC, "dateTime");
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        return commentRepository.findAll(spec, pageable);
     }
 
     public Comment getCommentById(Long id) throws NotFoundException {

@@ -15,22 +15,29 @@ databaseChangeLog:
         - column:
             name: description
             type: VARCHAR(255)
+            remarks: Описание задачи
         - column:
             name: priority
             type: VARCHAR(255)
+            remarks: Приоритет задачи
         - column:
             name: status
             type: VARCHAR(255)
+            remarks: Статус задачи
         - column:
             name: title
             type: VARCHAR(255)
+            remarks: Название задачи
         - column:
             name: author_id
             type: BIGINT
+            remarks: Автор задачи
         - column:
             name: performer_id
             type: BIGINT
+            remarks: Исполнитель задачи
         tableName: tasks
+        remarks: Таблица хранения задач
 - changeSet:
     id: 1731953707686-2
     author: slavbx
@@ -44,22 +51,27 @@ databaseChangeLog:
               primaryKeyName: users_pkey
             name: id
             type: BIGINT
+            remarks: Идентификатор пользователя
         - column:
             constraints:
               nullable: false
             name: email
             type: VARCHAR(255)
+            remarks: Email пользователя
         - column:
             constraints:
               nullable: false
             name: name
             type: VARCHAR(255)
+            remarks: Имя пользователя
         - column:
             constraints:
               nullable: false
             name: password
             type: VARCHAR(255)
+            remarks: Пароль пользователя
         tableName: users
+        remarks: Таблица хранения пользователей
 - changeSet:
     id: 1731953707686-3
     author: slavbx
@@ -89,19 +101,25 @@ databaseChangeLog:
               primaryKeyName: comments_pkey
             name: id
             type: BIGINT
+            remarks: Идентификатор комментария
         - column:
             name: date_time
             type: TIMESTAMP WITHOUT TIME ZONE
+            remarks: Дата-время создания комментария
         - column:
             name: text
             type: VARCHAR(255)
+            remarks: Текст комментария
         - column:
             name: task_id
             type: BIGINT
+            remarks: Комментируемая задача
         - column:
-            name: user_id
+            name: author_id
             type: BIGINT
+            remarks: Автор комментария
         tableName: comments
+        remarks: Таблица хранения комментариев
 - changeSet:
     id: 1731953707686-6
     author: slavbx
@@ -115,10 +133,13 @@ databaseChangeLog:
               primaryKeyName: roles_pkey
             name: id
             type: BIGINT
+            remarks: Идентификатор роли
         - column:
             name: name
             type: VARCHAR(255)
+            remarks: Роль
         tableName: roles
+        remarks: Таблица хранения ролей
 - changeSet:
     id: 1731953707686-7
     author: slavbx
@@ -132,6 +153,7 @@ databaseChangeLog:
               primaryKeyName: users_roles_pkey
             name: user_id
             type: BIGINT
+            remarks: Идентификатор пользователя
         - column:
             constraints:
               nullable: false
@@ -139,7 +161,9 @@ databaseChangeLog:
               primaryKeyName: users_roles_pkey
             name: role_id
             type: BIGINT
+            remarks: Идентификатор роли
         tableName: users_roles
+        remarks: Таблица соответствия ролей пользователям
 - changeSet:
     id: 1731953707686-8
     author: slavbx
@@ -160,9 +184,9 @@ databaseChangeLog:
     author: slavbx
     changes:
     - addForeignKeyConstraint:
-        baseColumnNames: user_id
+        baseColumnNames: author_id
         baseTableName: comments
-        constraintName: fk_comments_user_id
+        constraintName: fk_comments_author_id
         deferrable: false
         initiallyDeferred: false
         onDelete: NO ACTION

@@ -1,6 +1,10 @@
 ### Просмотр всех задач постранично
 GET http://localhost:8080/taskmanager/tasks?page=0&size=10
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjo2LCJlbWFpbCI6InNsYXY0QG1haWwuY29tIiwic3ViIjoic2xhdjRAbWFpbC5jb20iLCJpYXQiOjE3MzIxNjg2MzYsImV4cCI6MTczMjMxMjYzNn0.omlVT8qdSrijf5XLQ0a7Mlu9RwItBLVJyo7fUx9hGs8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjoyLCJlbWFpbCI6InVzZXIxQHVzZXIuY29tIiwic3ViIjoidXNlcjFAdXNlci5jb20iLCJpYXQiOjE3MzIyNjg2NjAsImV4cCI6MTczMjQxMjY2MH0._7dwsEDWOM-zpA_vmAya8UTGYoMc-Hy-oi8sxEuc4IM
+
+### Просмотр всех задач постранично
+GET http://localhost:8080/taskmanager/tasks?page=0&size=10&performerId=3
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjoyLCJlbWFpbCI6InVzZXIxQHVzZXIuY29tIiwic3ViIjoidXNlcjFAdXNlci5jb20iLCJpYXQiOjE3MzIyNjg2NjAsImV4cCI6MTczMjQxMjY2MH0._7dwsEDWOM-zpA_vmAya8UTGYoMc-Hy-oi8sxEuc4IM
 
 ### Просмотр всех задач постранично (ошибка при size>100)
 GET http://localhost:8080/taskmanager/tasks?page=0&size=101
@@ -20,10 +24,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjEsIm5hbWUiOiJST
 Content-Type: application/json
 
 {
-  "title": "task3_title",
-  "description": "task3_desc",
+  "title": "task6_title",
+  "description": "task6_desc",
   "authorId": 1,
-  "performerId": 2,
+  "performerId": 3,
   "priority": "MEDIUM",
   "status": "WAIT"
 }

@@ -57,8 +57,8 @@ public class UserController {
         taskRepository.save(task1);
         taskRepository.save(task2);
 
-        Comment comment1 = Comment.builder().user(userUser).task(task1).text("I post this comment for task1 here").build();
-        Comment comment2 = Comment.builder().user(userUser).task(task2).text("I post this comment for task2 here").build();
+        Comment comment1 = Comment.builder().author(userUser).task(task1).text("I post this comment for task1 here").build();
+        Comment comment2 = Comment.builder().author(userUser).task(task2).text("I post this comment for task2 here").build();
         commentRepository.save(comment1);
         commentRepository.save(comment2);
 

@@ -16,5 +16,5 @@ public class CommentDTO {
     LocalDateTime dateTime;
     String text;
     private Long taskId;
-    private Long userId;
+    private Long authorId;
 }

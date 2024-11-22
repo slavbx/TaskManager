@@ -1,3 +1,4 @@
 "id","email","name","password"
 "1","admin@admin.com","administrator","$2a$10$wGF1LJFBCcgv14xr8nuaxeqBFz/NpAJxkTPOjL.fLjegEAjsfrzXW"
-"2","user@user.com","username","$2a$10$wGF1LJFBCcgv14xr8nuaxeqBFz/NpAJxkTPOjL.fLjegEAjsfrzXW"
+"2","user1@user.com","user1","$2a$10$wGF1LJFBCcgv14xr8nuaxeqBFz/NpAJxkTPOjL.fLjegEAjsfrzXW"
+"3","user2@user.com","user2","$2a$10$wGF1LJFBCcgv14xr8nuaxeqBFz/NpAJxkTPOjL.fLjegEAjsfrzXW"

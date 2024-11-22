@@ -12,15 +12,15 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface CommentMapper {
 
-    @Mapping(target = "userId", source = "user.id")
+    @Mapping(target = "authorId", source = "author.id")
     @Mapping(target = "taskId", source = "task.id")
     CommentDTO commentToCommentDTO(Comment comment);
 
-    @Mapping(target = "userId", source = "user.id")
+    @Mapping(target = "authorId", source = "author.id")
     @Mapping(target = "taskId", source = "task.id")
     List<CommentDTO> commentsToCommentDTOs(List<Comment> comments);
 
-    @Mapping(target = "user.id", source = "userId")
+    @Mapping(target = "author.id", source = "authorId")
     @Mapping(target = "task.id", source = "taskId")
     @Mapping(target = "dateTime", expression = "java(java.time.LocalDateTime.now())")
     Comment commentDTOToComment(CommentDTO commentDTO);

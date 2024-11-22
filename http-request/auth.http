@@ -21,7 +21,7 @@ POST http://localhost:8080/taskmanager/auth/signin
 Content-Type: application/json
 
 {
-  "email": "user@user.com",
+  "email": "user1@user.com",
   "password": "100"
 }
 

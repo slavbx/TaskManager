@@ -7,9 +7,14 @@ import org.slavbx.taskmanager.dto.CommentDTO;
 import org.slavbx.taskmanager.dto.ResponseDTO;
 import org.slavbx.taskmanager.dto.TaskDTO;
 import org.slavbx.taskmanager.mapper.CommentMapper;
+import org.slavbx.taskmanager.model.Comment;
+import org.slavbx.taskmanager.model.Task;
+import org.slavbx.taskmanager.repository.specification.CommentSpecifications;
+import org.slavbx.taskmanager.repository.specification.TaskSpecifications;
 import org.slavbx.taskmanager.service.CommentService;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -24,9 +29,11 @@ public class CommentController {
     private final CommentMapper commentMapper;
 
     @GetMapping
-    public ResponseEntity<Page<CommentDTO>> getCommentsPage(@RequestParam(defaultValue = "0") @Min(0) int page,
-                                                            @RequestParam(defaultValue = "10") @Min(0) @Max(100) int size) {
-        return ResponseEntity.ok(commentMapper.commentsPageToCommentDTOsPage(commentService.getAllComments(page, size)));
+    public ResponseEntity<Page<CommentDTO>> getCommentsPage(@RequestParam(defaultValue = "0") @Min(0) int pageNumber,
+                                                            @RequestParam(defaultValue = "10") @Min(0) @Max(100) int pageSize,
+                                                            Long authorId) {
+        Specification<Comment> spec = Specification.where(CommentSpecifications.hasAuthor(authorId));
+        return ResponseEntity.ok(commentMapper.commentsPageToCommentDTOsPage(commentService.getCommentsWithPagingAndFiltering(spec, pageNumber, pageSize)));
     }
 
     @GetMapping("/{id}")

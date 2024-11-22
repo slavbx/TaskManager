@@ -8,10 +8,12 @@ import org.slavbx.taskmanager.model.Status;
 import org.slavbx.taskmanager.model.Task;
 import org.slavbx.taskmanager.model.User;
 import org.slavbx.taskmanager.repository.TaskRepository;
+import org.springframework.boot.autoconfigure.rsocket.RSocketProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,10 +22,10 @@ public class TaskService {
     private final TaskRepository taskRepository;
     private final UserService userService;
 
-    public Page<Task> getAllTasks(int page, int size){
-        Sort sort = Sort.by(Sort.Direction.DESC, "priority");
-        Pageable pageable = PageRequest.of(page, size, sort);
-        return taskRepository.findAll(pageable);
+    public Page<Task> getTasksWithPagingAndFiltering(Specification<Task> spec, int pageNumber, int pageSize){
+        //Sort sort = Sort.by(Sort.Direction.DESC, "priority");
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        return taskRepository.findAll(spec, pageable);
     }
 
     public Task getTaskById(Long id) throws NotFoundException {
