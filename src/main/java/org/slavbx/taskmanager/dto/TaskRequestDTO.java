@@ -1,22 +1,19 @@
 package org.slavbx.taskmanager.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.slavbx.taskmanager.model.Priority;
 import org.slavbx.taskmanager.model.Status;
 
-import java.time.LocalDateTime;
-
 @Builder
-@Schema(description = "Выходной DTO для задач")
-public record TaskDTO (
-    Long id,
+@Schema(description = "Входной DTO для задач")
+public record TaskRequestDTO(
     String title,
     String description,
-    Long authorId,
+    @Positive
+    @NotEmpty
     Long performerId,
     Priority priority,
     Status status

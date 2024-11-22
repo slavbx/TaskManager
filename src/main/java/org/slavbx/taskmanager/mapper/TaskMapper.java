@@ -3,6 +3,7 @@ package org.slavbx.taskmanager.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.slavbx.taskmanager.dto.TaskDTO;
+import org.slavbx.taskmanager.dto.TaskRequestDTO;
 import org.slavbx.taskmanager.model.Task;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -20,9 +21,8 @@ public interface TaskMapper {
     @Mapping(target = "performerId", source = "performer.id")
     List<TaskDTO> tasksToTaskDTOs(List<Task> tasks);
 
-    @Mapping(target = "author.id", source = "authorId")
     @Mapping(target = "performer.id", source = "performerId")
-    Task taskDTOToTask(TaskDTO taskDTO);
+    Task taskRequestDTOToTask(TaskRequestDTO taskRequestDTO);
 
     default Page<TaskDTO> tasksPageToTaskDTOsPage(Page<Task> tasksPage) {
         List<TaskDTO> taskDTOs = tasksToTaskDTOs(tasksPage.getContent());

@@ -8,7 +8,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST
 
 
 ### Получение комментария по его id
-GET http://localhost:8080/taskmanager/comments/-2
+GET http://localhost:8080/taskmanager/comments/1
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjoyLCJlbWFpbCI6InVzZXIxQHVzZXIuY29tIiwic3ViIjoidXNlcjFAdXNlci5jb20iLCJpYXQiOjE3MzIyNjg2NjAsImV4cCI6MTczMjQxMjY2MH0._7dwsEDWOM-zpA_vmAya8UTGYoMc-Hy-oi8sxEuc4IM
 
 
@@ -22,7 +22,7 @@ Content-Type: application/json
 
 {
   "text": "I post this comment for task1 here",
-  "taskId": 1
+  "taskId": 3
 }
 
 ### Удаление комментария

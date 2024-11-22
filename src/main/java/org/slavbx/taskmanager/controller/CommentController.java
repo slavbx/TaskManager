@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.slavbx.taskmanager.dto.CommentDTO;
+import org.slavbx.taskmanager.dto.CommentRequestDTO;
 import org.slavbx.taskmanager.dto.ResponseDTO;
 import org.slavbx.taskmanager.mapper.CommentMapper;
 import org.slavbx.taskmanager.model.Comment;
@@ -37,10 +38,10 @@ public class CommentController {
         return ResponseEntity.ok(commentMapper.commentToCommentDTO(commentService.getCommentById(id)));
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN') or @taskSecurity.hasPerformer(#commentDTO.taskId)")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or @taskSecurity.hasPerformer(#commentRequestDTO.taskId)")
     @PostMapping("/create")
-    public ResponseEntity<ResponseDTO> createComment(@RequestBody CommentDTO commentDTO) {
-        return ResponseEntity.ok(commentService.createComment(commentMapper.commentDTOToComment(commentDTO)));
+    public ResponseEntity<ResponseDTO> createComment(@RequestBody CommentRequestDTO commentRequestDTO) {
+        return ResponseEntity.ok(commentService.createComment(commentMapper.commentRequestDTOToComment(commentRequestDTO)));
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

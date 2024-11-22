@@ -41,7 +41,7 @@ public class TaskService {
     }
 
     public ResponseDTO create(Task task) {
-        task.setId(null);
+        task.setAuthor(userService.getCurrentUser());
         Task savedTask = taskRepository.save(task);
         return new ResponseDTO(savedTask.getId(), "Task was created");
     }

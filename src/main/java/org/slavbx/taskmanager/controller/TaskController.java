@@ -1,15 +1,10 @@
 package org.slavbx.taskmanager.controller;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
-import org.slavbx.taskmanager.dto.PriorityDTO;
-import org.slavbx.taskmanager.dto.ResponseDTO;
-import org.slavbx.taskmanager.dto.StatusDTO;
-import org.slavbx.taskmanager.dto.TaskDTO;
+import org.slavbx.taskmanager.dto.*;
 import org.slavbx.taskmanager.mapper.TaskMapper;
 import org.slavbx.taskmanager.model.Task;
 import org.slavbx.taskmanager.repository.specification.TaskSpecifications;
@@ -17,12 +12,9 @@ import org.slavbx.taskmanager.service.TaskService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Schema(description = "Создание ")
 @RestController
@@ -49,14 +41,15 @@ public class TaskController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/create")
-    public ResponseEntity<ResponseDTO> createTask(@RequestBody TaskDTO taskDTO) {
-        return ResponseEntity.ok(taskService.create(taskMapper.taskDTOToTask(taskDTO)));
+    public ResponseEntity<ResponseDTO> createTask(@RequestBody TaskRequestDTO taskRequestDTO) {
+        return ResponseEntity.ok(taskService.create(taskMapper.taskRequestDTOToTask(taskRequestDTO)));
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/update/{id}")
-    public ResponseEntity<ResponseDTO> updateTask(@PathVariable @Min(0) Long id, @RequestBody TaskDTO taskDTO) {
-        return ResponseEntity.ok(taskService.update(id, taskMapper.taskDTOToTask(taskDTO)));
+    public ResponseEntity<ResponseDTO> updateTask(@PathVariable @Min(0) Long id,
+                                                  @RequestBody TaskRequestDTO taskRequestDTO) {
+        return ResponseEntity.ok(taskService.update(id, taskMapper.taskRequestDTOToTask(taskRequestDTO)));
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -67,14 +60,16 @@ public class TaskController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PatchMapping("/{id}/priority")
-    public ResponseEntity<ResponseDTO> setTaskPriority(@PathVariable @Min(0) Long id, @RequestBody PriorityDTO priorityDTO) {
-        return ResponseEntity.ok(taskService.setTaskPriority(id, priorityDTO.getPriority()));
+    public ResponseEntity<ResponseDTO> setTaskPriority(@PathVariable @Min(0) Long id,
+                                                       @RequestBody PriorityRequestDTO priorityRequestDTO) {
+        return ResponseEntity.ok(taskService.setTaskPriority(id, priorityRequestDTO.priority()));
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN') or @taskSecurity.hasPerformer(#id)")
     @PatchMapping("/{id}/status")
-    public ResponseEntity<ResponseDTO> setTaskStatus(@PathVariable @Min(0) Long id, @RequestBody StatusDTO statusDTO) {
-        return ResponseEntity.ok(taskService.setTaskStatus(id, statusDTO.getStatus()));
+    public ResponseEntity<ResponseDTO> setTaskStatus(@PathVariable @Min(0) Long id,
+                                                     @RequestBody StatusRequestDTO statusRequestDTO) {
+        return ResponseEntity.ok(taskService.setTaskStatus(id, statusRequestDTO.status()));
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

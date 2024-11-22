@@ -29,7 +29,6 @@ public class CommentService {
     }
 
     public ResponseDTO createComment(Comment comment) {
-        comment.setId(null);
         comment.setAuthor(userService.getCurrentUser());
         Comment savedComment = commentRepository.save(comment);
         return new ResponseDTO(savedComment.getId(), "Comment was created");

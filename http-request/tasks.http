@@ -37,7 +37,7 @@ POST http://localhost:8080/taskmanager/tasks/3/setperformer/2
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjozLCJlbWFpbCI6InNsYXZAbWFpbC5jb20iLCJzdWIiOiJzbGF2IiwiaWF0IjoxNzMyMTMyMTE5LCJleHAiOjE3MzIyNzYxMTl9.thf6OGG3PBKLr_kPr-a1OLEfydVMlrNqeMTGBarjMCQ
 
 ### Редактирование задачи
-PUT http://localhost:8080/taskmanager/tasks/update/6
+PUT http://localhost:8080/taskmanager/tasks/update/5
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6W3siaWQiOjIsIm5hbWUiOiJST0xFX1VTRVIifV0sImlkIjozLCJlbWFpbCI6InNsYXZAbWFpbC5jb20iLCJzdWIiOiJzbGF2IiwiaWF0IjoxNzMyMTMyMTE5LCJleHAiOjE3MzIyNzYxMTl9.thf6OGG3PBKLr_kPr-a1OLEfydVMlrNqeMTGBarjMCQ
 Content-Type: application/json
 
