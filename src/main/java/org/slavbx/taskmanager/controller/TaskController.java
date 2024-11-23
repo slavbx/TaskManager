@@ -18,6 +18,7 @@ import org.slavbx.taskmanager.security.JwtAuthenticationResponseDTO;
 import org.slavbx.taskmanager.service.TaskService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -34,12 +35,12 @@ public class TaskController {
 
     @Operation(summary = "Получение задач постранично")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Получен список задач в контейнере Page",
-                content = @Content(mediaType = "application/json")),
-        @ApiResponse(responseCode = "409", description = "Пользователь с таким email уже существует",
-                content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class)))
+            @ApiResponse(responseCode = "200", description = "Получен список задач",
+                    content = @Content(mediaType = "application/json")),
+            @ApiResponse(responseCode = "404", description = "Задачи не найдены",
+                    content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class)))
     })
-    @GetMapping
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Page<TaskDTO>> getTasksPage(@RequestParam(defaultValue = "0") @Min(0) int pageNumber,
                                                       @RequestParam(defaultValue = "10") @Min(0) @Max(100) int pageSize,
                                                       Long authorId, Long performerId) {
@@ -49,13 +50,31 @@ public class TaskController {
                 .getTasksWithPagingAndFiltering(spec, pageNumber, pageSize)));
     }
 
-    @GetMapping("/{id}")
+    @Operation(summary = "Получение задачи по id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Задача получена",
+                    content = @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = TaskDTO.class))),
+            @ApiResponse(responseCode = "404", description = "Задача не найдена",
+                    content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class))),
+            @ApiResponse(responseCode = "400", description = "Некорректные параметры запроса",
+                    content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class)))
+    })
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TaskDTO> getTaskById(@PathVariable @Min(0) Long id) {
         return ResponseEntity.ok(taskMapper.taskToTaskDTO(taskService.getTaskById(id)));
     }
 
+    @Operation(summary = "Создание задачи")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Задача создана",
+                    content = @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = TaskDTO.class))),
+            @ApiResponse(responseCode = "400", description = "Некорректные параметры запроса",
+                    content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class)))
+    })
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/create")
+    @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseDTO> createTask(@RequestBody TaskRequestDTO taskRequestDTO) {
         return ResponseEntity.ok(taskService.create(taskMapper.taskRequestDTOToTask(taskRequestDTO)));
     }

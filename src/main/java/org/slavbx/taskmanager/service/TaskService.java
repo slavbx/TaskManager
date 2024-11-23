@@ -22,9 +22,12 @@ public class TaskService {
     private final TaskRepository taskRepository;
     private final UserService userService;
 
-    public Page<Task> getTasksWithPagingAndFiltering(Specification<Task> spec, int pageNumber, int pageSize){
-        //Sort sort = Sort.by(Sort.Direction.DESC, "priority");
+    public Page<Task> getTasksWithPagingAndFiltering(Specification<Task> spec, int pageNumber, int pageSize) throws NotFoundException {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        Page<Task> page = taskRepository.findAll(spec, pageable);
+        if (page.isEmpty()) {
+            throw new NotFoundException("Tasks not found");
+        }
         return taskRepository.findAll(spec, pageable);
     }
 
