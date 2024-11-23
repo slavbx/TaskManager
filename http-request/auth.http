@@ -3,7 +3,7 @@ POST http://localhost:8080/taskmanager/auth/signin
 Content-Type: application/json
 
 {
-  "email": "slav4@mail.com",
+  "email": "slav3@mail.com",
   "password": "101"
 }
 

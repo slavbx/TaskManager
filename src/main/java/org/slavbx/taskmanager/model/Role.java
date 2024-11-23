@@ -7,7 +7,6 @@ import lombok.*;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Getter
 @Setter
 @Builder
@@ -23,7 +22,4 @@ public class Role {
     private Long id;
 
     private String name;
-
-//    @ManyToMany(mappedBy = "roles")
-//    private Set<User> users;
 }
