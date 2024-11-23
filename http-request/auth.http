@@ -22,7 +22,7 @@ Content-Type: application/json
 
 {
   "email": "user1@user.com",
-  "password": "100"
+  "password": "1001"
 }
 
 ### Регистрация
@@ -30,7 +30,7 @@ POST http://localhost:8080/taskmanager/auth/signup
 Content-Type: application/json
 
 {
-  "email": "slav4@mail.com",
-  "name": "slav4",
+  "email": "slav7@mail.com",
+  "name": "slav7",
   "password": "101"
 }

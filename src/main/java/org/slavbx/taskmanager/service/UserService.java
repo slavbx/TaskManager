@@ -27,12 +27,13 @@ public class UserService {
     }
 
     public User create(User user) {
-        if (userRepository.existsByName(user.getName())) {
-            throw new AlreadyExistsException("User with name: " + user.getName() + " already exists");
-        }
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new AlreadyExistsException("User with email: " + user.getEmail() + " already exists");
         }
+        if (userRepository.existsByName(user.getName())) {
+            throw new AlreadyExistsException("User with name: " + user.getName() + " already exists");
+        }
+
         return save(user);
     }
 
