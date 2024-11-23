@@ -12,13 +12,13 @@ import lombok.Data;
 public record SignInRequestDTO (
 
     @Schema(description = "Адрес электронной почты", example = "example@gmail.com")
-    @Size(min = 5, max = 255, message = "Адрес электронной почты должен содержать от 5 до 255 символов")
-    @NotBlank(message = "Адрес электронной почты не может быть пустыми")
-    @Email(message = "Email адрес должен быть в формате user@example.com")
+    @Size(min = 5, max = 255, message = "Email address must be between 5 and 255 characters long")
+    @NotBlank(message = "Email address cannot be empty")
+    @Email(message = "Email address must be in the format user@example.com")
     String email,
 
     @Schema(description = "Пароль", example = "my_1secret1_password")
-    @Size(min = 3, max = 255, message = "Длина пароля должна быть от 3 до 255 символов")
-    @NotBlank(message = "Пароль не может быть пустым")
+    @Size(min = 3, max = 255, message = "Password length must be between 3 and 255 characters long")
+    @NotBlank(message = "Password cannot be empty")
     String password
 ){}

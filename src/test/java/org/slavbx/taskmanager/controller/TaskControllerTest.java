@@ -143,7 +143,7 @@ class TaskControllerTest {
 
     @Test
     void setPerformerToTask() throws Exception {
-        mockMvc.perform(post("/tasks/1/setperformer/2")
+        mockMvc.perform(post("/tasks/1/performer/2")
                 .contentType(MediaType.APPLICATION_JSON)
                 .header("Authorization", "Bearer " + token))
                 .andExpect(status().isOk())

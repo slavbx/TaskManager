@@ -10,22 +10,20 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+
 
 @RestControllerAdvice
 public class ExceptionApiHandler {
 
-    @ExceptionHandler(NotFoundException.class) //MyCustomException
+    @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ErrorResponseDTO> notFoundException(NotFoundException exception) {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(ErrorResponseDTO.builder().message(exception.getMessage()).build());
     }
 
-    @ExceptionHandler(AlreadyExistsException.class) //MyCustomException
+    @ExceptionHandler(AlreadyExistsException.class)
     public ResponseEntity<ErrorResponseDTO> alreadyExistsException(AlreadyExistsException exception) {
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
@@ -56,5 +54,4 @@ public class ExceptionApiHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(ErrorResponseDTO.builder().message(exception.getMessage()).build());
     }
-
 }
