@@ -1,6 +1,12 @@
 package org.slavbx.taskmanager.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +14,7 @@ import org.slavbx.taskmanager.dto.*;
 import org.slavbx.taskmanager.mapper.TaskMapper;
 import org.slavbx.taskmanager.model.Task;
 import org.slavbx.taskmanager.repository.specification.TaskSpecifications;
+import org.slavbx.taskmanager.security.JwtAuthenticationResponseDTO;
 import org.slavbx.taskmanager.service.TaskService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.domain.Specification;
@@ -16,7 +23,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@Schema(description = "Создание ")
+@Tag(name = "Управление задачами")
 @RestController
 @Validated
 @RequiredArgsConstructor
@@ -25,13 +32,21 @@ public class TaskController {
     private final TaskService taskService;
     private final TaskMapper taskMapper;
 
+    @Operation(summary = "Получение задач постранично")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Получен список задач в контейнере Page",
+                content = @Content(mediaType = "application/json")),
+        @ApiResponse(responseCode = "409", description = "Пользователь с таким email уже существует",
+                content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class)))
+    })
     @GetMapping
     public ResponseEntity<Page<TaskDTO>> getTasksPage(@RequestParam(defaultValue = "0") @Min(0) int pageNumber,
                                                       @RequestParam(defaultValue = "10") @Min(0) @Max(100) int pageSize,
                                                       Long authorId, Long performerId) {
         Specification<Task> spec = Specification.where(TaskSpecifications.hasAuthor(authorId)
                 .and(TaskSpecifications.hasPerformer(performerId)));
-        return ResponseEntity.ok(taskMapper.tasksPageToTaskDTOsPage(taskService.getTasksWithPagingAndFiltering(spec, pageNumber, pageSize)));
+        return ResponseEntity.ok(taskMapper.tasksPageToTaskDTOsPage(taskService
+                .getTasksWithPagingAndFiltering(spec, pageNumber, pageSize)));
     }
 
     @GetMapping("/{id}")
