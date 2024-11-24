@@ -1,9 +1,21 @@
 services:
-  postgres:
+#  postgres:
+#    image: 'postgres:latest'
+#    container_name: tm-postgres
+  tm-postgres:
     image: 'postgres:latest'
     environment:
       - 'POSTGRES_DB=db_taskmanager'
       - 'POSTGRES_PASSWORD=slav'
       - 'POSTGRES_USER=slav'
     ports:
-      - '5433:5432'
+      - '5432:5432'
+  tm-app:
+#    container_name: tm-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - tm-postgres

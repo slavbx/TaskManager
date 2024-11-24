@@ -5,7 +5,7 @@ spring:
   application:
     name: TaskManager
   datasource:
-    url: jdbc:postgresql://localhost:5432/db_taskmanager?currentSchema=taskmanager
+    url: jdbc:postgresql://tm-postgres:5432/db_taskmanager?currentSchema=taskmanager
     username: slav
     password: slav
     driver-class-name: org.postgresql.Driver
@@ -16,10 +16,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
-#      ddl-auto: update
     show-sql: true  #Print SQL-query in console
     properties:
       hibernate.default_schema: taskmanager
 jwt:
   secret: 984hg493gh0439rthr0429uruj2309yh937gc763fe87t3f89723gf
-  lifetime: 10m
