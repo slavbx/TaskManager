@@ -19,6 +19,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * Конфигурация безопасности для приложения.
+ * Настраивает параметры безопасности, включая управление доступом
+ * к различным эндпоинтам, настройки фильтров для аутентификации и методы шифрования паролей
+ */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity

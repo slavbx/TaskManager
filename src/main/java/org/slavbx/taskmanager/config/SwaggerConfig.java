@@ -9,6 +9,11 @@ import io.swagger.v3.oas.models.security.SecurityRequirement;
 
 import static io.swagger.v3.oas.models.security.SecurityScheme.Type.HTTP;
 
+/**
+ * Конфигурация Swagger для API документации.
+ * Определяет метаданные API, такие как название и версия,
+ * а также настраивает механизм аутентификации в Swagger с использованием JWT
+ */
 @Configuration
 public class SwaggerConfig {
 
