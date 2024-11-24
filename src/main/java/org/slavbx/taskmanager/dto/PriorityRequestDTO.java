@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import org.slavbx.taskmanager.model.Priority;
 
+/**
+ * Data Transfer Object для получения приоритета задачи от клиента
+ */
 @Builder
 @Schema(description = "DTO для получения приоритета задачи")
 public record PriorityRequestDTO (

@@ -16,7 +16,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
-    show-sql: true  #Print SQL-query in console
+    show-sql: false
     properties:
       hibernate.default_schema: taskmanager
 jwt:

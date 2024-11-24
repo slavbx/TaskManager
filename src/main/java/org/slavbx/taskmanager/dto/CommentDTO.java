@@ -5,8 +5,11 @@ import lombok.Builder;
 
 import java.time.LocalDateTime;
 
+/**
+ * Data Transfer Object для отправки комментария клиенту
+ */
 @Builder
-@Schema(description = "DTO для отправки комментариев")
+@Schema(description = "DTO для отправки комментария")
 public record CommentDTO (
     Long id,
     LocalDateTime dateTime,

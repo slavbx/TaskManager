@@ -6,8 +6,11 @@ import lombok.Builder;
 import org.slavbx.taskmanager.model.Priority;
 import org.slavbx.taskmanager.model.Status;
 
+/**
+ * Data Transfer Object для получения задачи от клиента
+ */
 @Builder
-@Schema(description = "DTO для получения задач")
+@Schema(description = "DTO для получения задачи")
 public record TaskRequestDTO(
         @Schema(description = "Название задачи", example = "Задача для группы")
         @NotBlank(message = "Title cannot be empty")

@@ -5,8 +5,11 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 
+/**
+ * Data Transfer Object для получения комментария от клиента
+ */
 @Builder
-@Schema(description = "DTO для получения комментариев")
+@Schema(description = "DTO для получения комментария")
 public record CommentRequestDTO(
         @Schema(description = "Текст комментария", example = "posted text")
         @NotBlank(message = "Text cannot be empty")

@@ -6,6 +6,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 
+/**
+ * Data Transfer Object для получения учётных данных от клиента при регистрации
+ */
 @Builder
 @Schema(description = "Запрос на регистрацию")
 public record SignUpRequestDTO (

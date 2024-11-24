@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import org.slavbx.taskmanager.model.Status;
 
+/**
+ * Data Transfer Object для получения статуса задачи от клиента
+ */
 @Builder
 @Schema(description = "DTO для получения статуса задачи")
 public record StatusRequestDTO (

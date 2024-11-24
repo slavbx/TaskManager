@@ -1,11 +1,10 @@
-package org.slavbx.taskmanager.security;
+package org.slavbx.taskmanager.service;
 
 import lombok.RequiredArgsConstructor;
+import org.slavbx.taskmanager.dto.JwtAuthenticationResponseDTO;
 import org.slavbx.taskmanager.dto.SignInRequestDTO;
 import org.slavbx.taskmanager.dto.SignUpRequestDTO;
 import org.slavbx.taskmanager.model.User;
-import org.slavbx.taskmanager.service.RoleService;
-import org.slavbx.taskmanager.service.UserService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;

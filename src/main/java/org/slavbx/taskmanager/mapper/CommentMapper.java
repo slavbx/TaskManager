@@ -10,6 +10,11 @@ import org.springframework.data.domain.PageImpl;
 
 import java.util.List;
 
+/**
+ * Mapper для преобразования объектов Comment и CommentDTO.
+ * Использует MapStruct для автоматического маппинга между {@link Comment} и {@link CommentDTO},
+ * а также для создания новых объектов Comment на основе {@link CommentRequestDTO}.
+ */
 @Mapper(componentModel = "spring")
 public interface CommentMapper {
 
