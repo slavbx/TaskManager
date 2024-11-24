@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 /**
- * Репозиторий для хранения сущности задачи {@link Task}.
+ * Репозиторий для хранения сущности задачи {@link Task}
  */
 public interface TaskRepository extends JpaRepository<Task, Long>, JpaSpecificationExecutor<Task> {
 }

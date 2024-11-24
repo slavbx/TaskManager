@@ -1,28 +1,18 @@
 package org.slavbx.taskmanager.service;
 
-import lombok.RequiredArgsConstructor;
 import org.slavbx.taskmanager.dto.ResponseDTO;
 import org.slavbx.taskmanager.exception.NotFoundException;
 import org.slavbx.taskmanager.model.Comment;
-import org.slavbx.taskmanager.repository.CommentRepository;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.stereotype.Service;
 
 /**
- * Сервис для управления комментариями.
+ * Интерфейс для управления комментариями.
  * Предоставляет функционал для работы с комментариями, включая
  * получение комментариев с учетом пагинации и фильтрации, создание и удаление
  * комментариев
  */
-@Service
-@RequiredArgsConstructor
-public class CommentService {
-    private final CommentRepository commentRepository;
-    private final UserService userService;
-
+public interface CommentService {
     /**
      * Получение комментариев с учетом пагинации и фильтрации.
      *
@@ -31,10 +21,7 @@ public class CommentService {
      * @param pageSize   размер страницы (количество комментариев)
      * @return объект Page с комментариями, соответствующими спецификации
      */
-    public Page<Comment> getCommentsWithPagingAndFiltering(Specification<Comment> spec, int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        return commentRepository.findAll(spec, pageable);
-    }
+    Page<Comment> getCommentsWithPagingAndFiltering(Specification<Comment> spec, int pageNumber, int pageSize);
 
     /**
      * Получение комментария по уникальному идентификатору.
@@ -43,9 +30,7 @@ public class CommentService {
      * @return объект Comment, соответствующий указанному идентификатору
      * @throws NotFoundException если комментарий не найден
      */
-    public Comment getCommentById(Long id) throws NotFoundException {
-        return commentRepository.findById(id).orElseThrow(() -> new NotFoundException("Comment not found with id: " + id));
-    }
+    Comment getCommentById(Long id) throws NotFoundException;
 
     /**
      * Создание нового комментария.
@@ -53,11 +38,7 @@ public class CommentService {
      * @param comment объект Comment, представляющий новый комментарий
      * @return объект ResponseDTO с идентификатором созданного комментария и соответствующим сообщением
      */
-    public ResponseDTO createComment(Comment comment) {
-        comment.setAuthor(userService.getCurrentUser());
-        Comment savedComment = commentRepository.save(comment);
-        return new ResponseDTO(savedComment.getId(), "Comment was created");
-    }
+    ResponseDTO createComment(Comment comment);
 
     /**
      * Удаление комментария по уникальному идентификатору.
@@ -65,8 +46,5 @@ public class CommentService {
      * @param id уникальный идентификатор комментария, который нужно удалить
      * @return объект ResponseDTO с идентификатором удаленного комментария и соответствующим сообщением
      */
-    public ResponseDTO delete(Long id) {
-        commentRepository.deleteById(id);
-        return new ResponseDTO(id, "Comment was deleted");
-    }
+    ResponseDTO delete(Long id);
 }

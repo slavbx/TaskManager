@@ -1,4 +1,4 @@
-package org.slavbx.taskmanager.service;
+package org.slavbx.taskmanager.security;
 
 
 import io.jsonwebtoken.Claims;

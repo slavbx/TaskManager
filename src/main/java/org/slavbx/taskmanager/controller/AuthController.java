@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slavbx.taskmanager.dto.ErrorResponseDTO;
-import org.slavbx.taskmanager.service.AuthenticationService;
+import org.slavbx.taskmanager.security.AuthenticationService;
 import org.slavbx.taskmanager.dto.JwtAuthenticationResponseDTO;
 import org.slavbx.taskmanager.dto.SignInRequestDTO;
 import org.slavbx.taskmanager.dto.SignUpRequestDTO;
