@@ -20,6 +20,12 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+/**
+ * Фильтр аутентификации JWT (JSON Web Token).
+ * Анализирует заголовок запроса для получения токена JWT,
+ * извлекает имя пользователя, и если токен действителен, устанавливает
+ * аутентификацию пользователя в контекст безопасности Spring.
+  */
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {

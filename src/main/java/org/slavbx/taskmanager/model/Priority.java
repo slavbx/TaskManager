@@ -3,12 +3,22 @@ package org.slavbx.taskmanager.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * Перечисление, представляющее приоритет задачи
+ */
 @Getter
 @AllArgsConstructor
 public enum Priority {
-    LOW("Низкий"),
-    MEDIUM("Средний"),
-    HIGH("Высокий");
-
-    private final String description;
+    /**
+     * Низкий приоритет
+     */
+    LOW,
+    /**
+     * Средний приоритет
+     */
+    MEDIUM,
+    /**
+     * Высокий приоритет
+     */
+    HIGH
 }

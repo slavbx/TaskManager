@@ -3,6 +3,10 @@ package org.slavbx.taskmanager.repository.specification;
 import org.slavbx.taskmanager.model.Task;
 import org.springframework.data.jpa.domain.Specification;
 
+/**
+ * Класс предоставляет спефикации для сущности задачи
+ * Используется для фильтрации списка задач
+ */
 public class TaskSpecifications {
     public static Specification<Task> hasAuthor(Long authorId) {
         return (root, criteriaQuery, criteriaBuilder) -> {

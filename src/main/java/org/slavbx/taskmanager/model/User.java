@@ -10,6 +10,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Класс представляет сущность пользователя.
+ * Содержит информацию о пользователе, включая его идентификатор,
+ * электронную почту, пароль, имя, роли и комментарии
+ */
 @Getter
 @Setter
 @Builder
@@ -19,20 +24,35 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
+    /**
+     * Уникальный идентификатор пользователя
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq")
     @SequenceGenerator(name = "users_seq", sequenceName = "users_id_seq", allocationSize = 1)
     private Long id;
 
+    /**
+     * Email пользователя
+     */
     @Column(unique = true, nullable = false)
     private String email;
 
+    /**
+     * Пароль пользователя
+     */
     @Column(nullable = false)
     private String password;
 
+    /**
+     * Имя пользователя
+     */
     @Column(unique = true, nullable = false)
     private String name;
 
+    /**
+     * Роли пользователя
+     */
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
           name = "users_roles",
@@ -40,6 +60,9 @@ public class User implements UserDetails {
           inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
+    /**
+     * Список комментарий, написанных пользователем
+     */
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Comment> comments;
@@ -69,11 +92,10 @@ public class User implements UserDetails {
         return true;
     }
 
+    /**
+     * Возвращает имя пользователя для security (в данном случае, email).
+     */
     public String getUsername() {
         return email;
-    }
-
-    public void setUsername(String email) {
-        this.email = email;
     }
 }

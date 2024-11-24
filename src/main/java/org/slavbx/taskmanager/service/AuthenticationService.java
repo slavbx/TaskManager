@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Сервис для аутентификации пользователей
+ */
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -22,6 +25,12 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
+    /**
+     * Регистрация нового пользователя и генерация JWT для аутентификации.
+     *
+     * @param request объект запроса на регистрацию, содержащий имя, email и пароль пользователя.
+     * @return объект {@link JwtAuthenticationResponseDTO}, содержащий сгенерированный JWT
+     */
     public JwtAuthenticationResponseDTO signUp(SignUpRequestDTO request) {
         User user = User.builder()
                 .name(request.name())
@@ -34,6 +43,13 @@ public class AuthenticationService {
         return new JwtAuthenticationResponseDTO(jwt);
     }
 
+    /**
+     * Аутентификация пользователя и генерация JWT.
+     *
+     * @param request объект запроса на вход, содержащий email и пароль пользователя.
+     * @return объект {@link JwtAuthenticationResponseDTO}, содержащий сгенерированный JWT.
+     * @throws RuntimeException если аутентификация не удалась
+     */
     public JwtAuthenticationResponseDTO signIn(SignInRequestDTO request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 request.email(),

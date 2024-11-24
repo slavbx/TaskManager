@@ -6,11 +6,21 @@ import org.slavbx.taskmanager.repository.TaskRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-@Component()
+/**
+ * Компонент для проверки прав доступа к задачам
+ */
+@Component
 @RequiredArgsConstructor
 public class TaskSecurity {
     private final TaskRepository taskRepository;
 
+    /**
+     * Проверяет, является ли текущий пользователь исполнителем задачи.
+     *
+     * @param taskId уникальный идентификатор задачи
+     * @return true, если текущий пользователь является исполнителем задачи; false в противном случае
+     * @throws RuntimeException если задача с указанным идентификатором не найдена
+     */
     public boolean hasPerformer(Long taskId) {
         String currentUserEmail = SecurityContextHolder.getContext().getAuthentication().getName();
         Task task = taskRepository.findById(taskId)
