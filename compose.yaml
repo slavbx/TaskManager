@@ -1,7 +1,4 @@
 services:
-#  postgres:
-#    image: 'postgres:latest'
-#    container_name: tm-postgres
   tm-postgres:
     image: 'postgres:latest'
     environment:
@@ -11,7 +8,6 @@ services:
     ports:
       - '5432:5432'
   tm-app:
-#    container_name: tm-app
     build:
       context: .
       dockerfile: Dockerfile
